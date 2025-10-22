@@ -1,0 +1,5 @@
+# dune init proj representations
+# OCAMLPARAM: unset
+# Shared cache: disabled
+# Workspace root: /Users/michaelleejl/Documents/focs-supervisions/supervision1
+# Auto-detected concurrency: 10

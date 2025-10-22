@@ -1,0 +1,159 @@
+# dune build
+# OCAMLPARAM: unset
+# Shared cache: disabled
+# Workspace root:
+# /Users/michaelleejl/Documents/focs-supervisions/supervision1/representations
+# Auto-detected concurrency: 10
+$ /Users/michaelleejl/.opam/default/bin/ocamlc.opt -config > /var/folders/ll/mm0mcnc52699y4zxxcgq32sw0000gn/T/dune_539142_output
+# Dune context:
+#  { name = "default"
+#  ; kind = "default"
+#  ; profile = Dev
+#  ; merlin = true
+#  ; for_host = None
+#  ; fdo_target_exe = None
+#  ; build_dir = "default"
+#  ; toplevel_path =
+#      Some External "/Users/michaelleejl/.opam/default/lib/toplevel"
+#  ; ocaml_bin = External "/Users/michaelleejl/.opam/default/bin"
+#  ; ocaml = Ok External "/Users/michaelleejl/.opam/default/bin/ocaml"
+#  ; ocamlc = External "/Users/michaelleejl/.opam/default/bin/ocamlc.opt"
+#  ; ocamlopt =
+#      Ok External "/Users/michaelleejl/.opam/default/bin/ocamlopt.opt"
+#  ; ocamldep =
+#      Ok External "/Users/michaelleejl/.opam/default/bin/ocamldep.opt"
+#  ; ocamlmklib =
+#      Ok External "/Users/michaelleejl/.opam/default/bin/ocamlmklib.opt"
+#  ; env =
+#      map
+#        { "DUNE_OCAML_HARDCODED" : "/Users/michaelleejl/.opam/default/lib"
+#        ; "DUNE_OCAML_STDLIB" : "/Users/michaelleejl/.opam/default/lib/ocaml"
+#        ; "DUNE_SOURCEROOT" :
+#            "/Users/michaelleejl/Documents/focs-supervisions/supervision1/representations"
+#        ; "INSIDE_DUNE" :
+#            "/Users/michaelleejl/Documents/focs-supervisions/supervision1/representations/_build/default"
+#        ; "MANPATH" :
+#            "/Users/michaelleejl/Documents/focs-supervisions/supervision1/representations/_build/install/default/bin"
+#        ; "OCAMLFIND_IGNORE_DUPS_IN" :
+#            "/Users/michaelleejl/Documents/focs-supervisions/supervision1/representations/_build/install/default/lib"
+#        ; "OCAMLPATH" :
+#            "/Users/michaelleejl/Documents/focs-supervisions/supervision1/representations/_build/install/default/lib"
+#        ; "OCAML_COLOR" : "always"
+#        ; "OPAMCOLOR" : "always"
+#        }
+#  ; findlib_paths = [ External "/Users/michaelleejl/.opam/default/lib" ]
+#  ; arch_sixtyfour = true
+#  ; natdynlink_supported = true
+#  ; supports_shared_libraries = true
+#  ; ocaml_config =
+#      { version = "4.14.0"
+#      ; standard_library_default =
+#          "/Users/michaelleejl/.opam/default/lib/ocaml"
+#      ; standard_library = "/Users/michaelleejl/.opam/default/lib/ocaml"
+#      ; standard_runtime = "the_standard_runtime_variable_was_deleted"
+#      ; ccomp_type = "cc"
+#      ; c_compiler = "cc"
+#      ; ocamlc_cflags =
+#          [ "-O2"; "-fno-strict-aliasing"; "-fwrapv"; "-pthread" ]
+#      ; ocamlc_cppflags = [ "-D_FILE_OFFSET_BITS=64" ]
+#      ; ocamlopt_cflags =
+#          [ "-O2"; "-fno-strict-aliasing"; "-fwrapv"; "-pthread" ]
+#      ; ocamlopt_cppflags = [ "-D_FILE_OFFSET_BITS=64" ]
+#      ; bytecomp_c_compiler =
+#          [ "cc"
+#          ; "-O2"
+#          ; "-fno-strict-aliasing"
+#          ; "-fwrapv"
+#          ; "-pthread"
+#          ; "-D_FILE_OFFSET_BITS=64"
+#          ]
+#      ; bytecomp_c_libraries = [ "-lm"; "-lpthread" ]
+#      ; native_c_compiler =
+#          [ "cc"
+#          ; "-O2"
+#          ; "-fno-strict-aliasing"
+#          ; "-fwrapv"
+#          ; "-pthread"
+#          ; "-D_FILE_OFFSET_BITS=64"
+#          ]
+#      ; native_c_libraries = [ "-lm" ]
+#      ; native_pack_linker = [ "ld"; "-r"; "-o" ]
+#      ; cc_profile = []
+#      ; architecture = "arm64"
+#      ; model = "default"
+#      ; int_size = 63
+#      ; word_size = 64
+#      ; system = "macosx"
+#      ; asm = [ "cc"; "-c"; "-Wno-trigraphs" ]
+#      ; asm_cfi_supported = true
+#      ; with_frame_pointers = false
+#      ; ext_exe = ""
+#      ; ext_obj = ".o"
+#      ; ext_asm = ".s"
+#      ; ext_lib = ".a"
+#      ; ext_dll = ".so"
+#      ; os_type = "Unix"
+#      ; default_executable_name = "a.out"
+#      ; systhread_supported = true
+#      ; host = "aarch64-apple-darwin21.6.0"
+#      ; target = "aarch64-apple-darwin21.6.0"
+#      ; profiling = false
+#      ; flambda = false
+#      ; spacetime = false
+#      ; safe_string = true
+#      ; exec_magic_number = "Caml1999X031"
+#      ; cmi_magic_number = "Caml1999I031"
+#      ; cmo_magic_number = "Caml1999O031"
+#      ; cma_magic_number = "Caml1999A031"
+#      ; cmx_magic_number = "Caml1999Y031"
+#      ; cmxa_magic_number = "Caml1999Z031"
+#      ; ast_impl_magic_number = "Caml1999M031"
+#      ; ast_intf_magic_number = "Caml1999N031"
+#      ; cmxs_magic_number = "Caml1999D031"
+#      ; cmt_magic_number = "Caml1999T031"
+#      ; natdynlink_supported = true
+#      ; supports_shared_libraries = true
+#      ; windows_unicode = false
+#      }
+#  }
+# Promoting "_build/default/representations.opam" to "representations.opam"
+$ (cd _build/default && /Users/michaelleejl/.opam/default/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -w -49 -nopervasives -nostdlib -g -bin-annot -I lib/.representations.objs/byte -no-alias-deps -opaque -o lib/.representations.objs/byte/representations.cmo -c -impl lib/representations.ml-gen)
+$ (cd _build/default && /Users/michaelleejl/.opam/default/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -I test/.representations.eobjs/byte -no-alias-deps -opaque -o test/.representations.eobjs/byte/dune__exe__Representations.cmi -c -intf test/representations.mli)
+$ (cd _build/default && /Users/michaelleejl/.opam/default/bin/ocamldep.opt -modules -impl lib/twoDigit.ml) > _build/default/lib/.representations.objs/twoDigit.ml.d
+$ (cd _build/default && /Users/michaelleejl/.opam/default/bin/ocamldep.opt -modules -intf lib/twoDigit.mli) > _build/default/lib/.representations.objs/twoDigit.mli.d
+$ (cd _build/default && /Users/michaelleejl/.opam/default/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -I lib/.representations.objs/byte -no-alias-deps -opaque -open Representations -o lib/.representations.objs/byte/representations__TwoDigit.cmi -c -intf lib/twoDigit.mli)
+$ (cd _build/default && /Users/michaelleejl/.opam/default/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -I lib/.representations.objs/byte -intf-suffix .ml -no-alias-deps -opaque -open Representations -o lib/.representations.objs/byte/representations__TwoDigit.cmo -c -impl lib/twoDigit.ml)
+> File "lib/twoDigit.ml", line 1:
+> Error: The implementation lib/twoDigit.ml
+>        does not match the interface lib/.representations.objs/byte/representations__TwoDigit.cmi:
+>         The type `year' is required but not provided
+>        File "lib/twoDigit.mli", line 1, characters 0-9: Expected declaration
+>        The value `make' is required but not provided
+>        File "lib/twoDigit.mli", line 2, characters 0-22: Expected declaration
+>        The value `get' is required but not provided
+>        File "lib/twoDigit.mli", line 3, characters 0-20: Expected declaration
+>        The value `is_gteq' is required but not provided
+>        File "lib/twoDigit.mli", line 4, characters 0-33: Expected declaration
+>        The value `add' is required but not provided
+>        File "lib/twoDigit.mli", line 5, characters 0-28: Expected declaration
+[2]
+$ (cd _build/default && /Users/michaelleejl/.opam/default/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I lib/.representations.objs/byte -I lib/.representations.objs/native -intf-suffix .ml -no-alias-deps -opaque -open Representations -o lib/.representations.objs/native/representations__TwoDigit.cmx -c -impl lib/twoDigit.ml)
+> File "lib/twoDigit.ml", line 1:
+> Error: The implementation lib/twoDigit.ml
+>        does not match the interface lib/.representations.objs/byte/representations__TwoDigit.cmi:
+>         The type `year' is required but not provided
+>        File "lib/twoDigit.mli", line 1, characters 0-9: Expected declaration
+>        The value `make' is required but not provided
+>        File "lib/twoDigit.mli", line 2, characters 0-22: Expected declaration
+>        The value `get' is required but not provided
+>        File "lib/twoDigit.mli", line 3, characters 0-20: Expected declaration
+>        The value `is_gteq' is required but not provided
+>        File "lib/twoDigit.mli", line 4, characters 0-33: Expected declaration
+>        The value `add' is required but not provided
+>        File "lib/twoDigit.mli", line 5, characters 0-28: Expected declaration
+[2]
+$ (cd _build/default && /Users/michaelleejl/.opam/default/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -I bin/.dates.eobjs/byte -I lib/.representations.objs/byte -no-alias-deps -opaque -o bin/.dates.eobjs/byte/dune__exe__Dates.cmi -c -intf bin/dates.mli)
+$ (cd _build/default && /Users/michaelleejl/.opam/default/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -w -49 -nopervasives -nostdlib -g -I lib/.representations.objs/byte -I lib/.representations.objs/native -intf-suffix .ml-gen -no-alias-deps -opaque -o lib/.representations.objs/native/representations.cmx -c -impl lib/representations.ml-gen)
+$ (cd _build/default && /Users/michaelleejl/.opam/default/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I test/.representations.eobjs/byte -I test/.representations.eobjs/native -intf-suffix .ml -no-alias-deps -opaque -o test/.representations.eobjs/native/dune__exe__Representations.cmx -c -impl test/representations.ml)
+$ (cd _build/default && /Users/michaelleejl/.opam/default/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -I bin/.dates.eobjs/byte -I bin/.dates.eobjs/native -I lib/.representations.objs/byte -I lib/.representations.objs/native -intf-suffix .ml -no-alias-deps -opaque -o bin/.dates.eobjs/native/dune__exe__Dates.cmx -c -impl bin/dates.ml)
+$ (cd _build/default && /Users/michaelleejl/.opam/default/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -o test/representations.exe test/.representations.eobjs/native/dune__exe__Representations.cmx)
