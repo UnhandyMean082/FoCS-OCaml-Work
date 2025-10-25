@@ -1,8 +1,0 @@
-lib: [
-  "_build/install/default/lib/representations/META"
-  "_build/install/default/lib/representations/dune-package"
-  "_build/install/default/lib/representations/opam"
-]
-bin: [
-  "_build/install/default/bin/representations"
-]
