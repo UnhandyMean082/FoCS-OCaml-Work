@@ -1,0 +1,4 @@
+(executable
+ (public_name f_p_imprecision)
+ (name main)
+ (libraries f_p_imprecision))
