@@ -1,0 +1,4 @@
+(executable
+ (public_name rec_iter)
+ (name main)
+ (libraries rec_iter))
