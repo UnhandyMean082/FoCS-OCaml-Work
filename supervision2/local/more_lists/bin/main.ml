@@ -15,6 +15,15 @@ let rec member x = function
     if x = y then true
     else member x l
 
+let rec inter xs ys acc =
+  match xs with
+  | [] -> List.rev acc
+  | x :: xs ->
+      if member x ys then
+        inter xs ys (x :: acc)
+      else
+        inter xs ys acc
+
 let () =
   Printf.printf "Zipping [1;2;3] and ['a';'b';'c']:\n";
   let zipped = zip [1;2;3] ['a';'b';'c'] in
