@@ -9,6 +9,12 @@ let rec unzip = function
       let xs, ys = unzip pairs in
       (x :: xs, y :: ys)
 
+let rec member x = function
+  | [] -> false
+  | y :: l ->
+    if x = y then true
+    else member x l
+
 let () =
   Printf.printf "Zipping [1;2;3] and ['a';'b';'c']:\n";
   let zipped = zip [1;2;3] ['a';'b';'c'] in
