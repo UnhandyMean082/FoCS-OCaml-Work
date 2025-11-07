@@ -1,0 +1,4 @@
+(executable
+ (public_name more_lists)
+ (name main)
+ (libraries more_lists))
