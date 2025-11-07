@@ -47,3 +47,11 @@ let () =
   Printf.printf "\nSecond list: ";
   List.iter (Printf.printf "%c ") ys;
   Printf.printf "\n\n";
+  Printf.printf "Intersection of [1;2;3;4] and [3;4;5;6]:\n";
+  let intersection = inter [1;2;3;4] [3;4;5;6] [] in
+  List.iter (Printf.printf "%d ") intersection;
+  Printf.printf "\n\n";
+  Printf.printf "Union of [1;2;3] and [3;4;5]:\n";
+  let union = set_union [1;2;3] [3;4;5] [] in
+  List.iter (Printf.printf "%d ") union;
+  Printf.printf "\n"
