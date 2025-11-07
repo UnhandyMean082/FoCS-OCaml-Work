@@ -24,6 +24,17 @@ let rec inter xs ys acc =
       else
         inter xs ys acc
 
+let rec set_union xs ys acc =
+  match xs with
+  | [] ->
+    if ys = [] then acc
+    else set_union ys [] acc
+  | x :: xs ->
+      if member x acc then
+        set_union xs ys acc
+      else
+        set_union xs ys (x :: acc)
+
 let () =
   Printf.printf "Zipping [1;2;3] and ['a';'b';'c']:\n";
   let zipped = zip [1;2;3] ['a';'b';'c'] in
