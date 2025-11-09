@@ -10,18 +10,18 @@ end = struct
 
 type 'a t = 'a list
 
-let empty = []
+let empty: 'a list = []
 
-let singleton x = [x]
+let singleton (x: 'a): 'a t = [x]
 
-let rec member x = function
+let rec member (x: 'a): 'a list -> bool = function
   | [] -> false
   | y :: l ->
     if x = y then true
     else member x l
 
-let union xs ys =
-  let rec loop xs ys acc =
+let union (xs: 'a t) (ys: 'a t): 'a t =
+  let rec loop (xs: 'a t) (ys: 'a t) (acc: 'a list): 'a t =
     match xs with
     | [] ->
       if ys = [] then acc
@@ -34,8 +34,8 @@ let union xs ys =
   in
   loop xs ys []
 
-let inter xs ys =
-  let rec loop xs ys acc =
+let inter (xs: 'a t) (ys: 'a t): 'a t =
+  let rec loop (xs: 'a t) (ys: 'a t) (acc: 'a list): 'a t =
     match xs with
     | [] -> List.rev acc
     | x :: xs ->
@@ -46,22 +46,26 @@ let inter xs ys =
   in
   loop xs ys []
 
-let to_list set = set
+let to_list (set: 'a t): 'a list = set
 
-let to_set lst = lst
+let to_set (lst: 'a list): 'a t = lst
 
 end
 
-let rec zip xs ys =
+let rec zip (xs: 'a list) (ys: 'b list): ('a * 'b) list =
   match (xs, ys) with
   | (x :: xs, y :: ys) -> (x, y) :: zip xs ys
   | _ -> []
 
-let rec unzip = function
+let rec unzip: ('a * 'b) list -> 'a list * 'b list = function
   | [] -> ([], [])
   | (x, y) :: pairs ->
       let xs, ys = unzip pairs in
       (x :: xs, y :: ys)
+
+let sign (lst: int list): int list * int list =
+  (List.filter (fun x -> x >= 0) lst,
+  List.filter (fun x -> x < 0) lst)
 
 let () =
   Printf.printf "Zipping [1;2;3] and ['a';'b';'c']:\n";
