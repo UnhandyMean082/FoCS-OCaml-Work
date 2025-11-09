@@ -91,4 +91,11 @@ let () =
   let s4 = Set.inter (Set.to_set [1;2;3]) (Set.to_set [2;3;4]) in
   Printf.printf "Intersection of [1;2;3] and [2;3;4]:\n";
   List.iter (Printf.printf "%d ") (Set.to_list s4);
+  Printf.printf "\n\n";
+  Printf.printf "Sign separation of [3; -1; 4; -2; 0]:\n";
+  let pos, neg = sign [3; -1; 4; -2; 0] in
+  Printf.printf "Positive numbers: ";
+  List.iter (Printf.printf "%d ") pos;
+  Printf.printf "\nNegative numbers: ";
+  List.iter (Printf.printf "%d ") neg;
   Printf.printf "\n"
