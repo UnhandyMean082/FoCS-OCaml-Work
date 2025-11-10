@@ -32,12 +32,12 @@ let del (k: string) (tree: 'a tree): 'a tree =
         | (Lf, _) -> t2
         | (_, Lf) -> t1
         | _ ->
-          let rec min_elt = function
+          let rec min: 'a tree -> string * 'a = function
             | Lf -> failwith "Unexpected Lf"
             | Br ((b, y), Lf, _) -> (b, y)
-            | Br (_, l, _) -> min_elt l
+            | Br (_, l, _) -> min l
           in
-          let (b, y) = min_elt t2 in
+          let (b, y) = min t2 in
           Br ((b, y), t1, loop b t2)
   in
   loop k tree
