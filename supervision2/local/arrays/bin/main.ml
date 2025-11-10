@@ -17,13 +17,18 @@ let rec get (i: int) (arr: 'a array): 'a =
   match arr with
   | Empty -> failwith "Index out of bounds"
   | Node (l, v, r, _) ->
-    let left_size = size l in
+    let left_size: int = size l in
     if i < left_size then
       get i l
     else if i = left_size then
       v
     else
       get (i - left_size - 1) r
+
+let rec append (value: 'a) (arr: 'a array): 'a array =
+  match arr with
+  | Empty -> node Empty value Empty
+  | Node (l, v, r, _) -> node l v (append value r)
 
 exception Collision
 let ins (k: string) (v: 'a) (tree: 'a tree): 'a tree =
