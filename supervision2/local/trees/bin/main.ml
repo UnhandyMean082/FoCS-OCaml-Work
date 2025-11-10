@@ -7,25 +7,34 @@ let rec ftree (k: int): int -> 'a tree = function
   | n -> Br(k, ftree (2 * k) (n - 1), ftree (2 * k + 1) (n - 1))
 
 let tree_sum (t: 'a tree): int =
-  let rec loop (acc: int): 'a tree -> int = function
-    | Lf -> acc
-    | Br(v, l, r) -> loop (loop (acc + v) l) r
+  let rec loop (acc: int): 'a tree list -> int = function
+    | [] -> acc
+    | x :: xs -> 
+      match x with
+      | Lf -> loop acc xs
+      | Br(v, l, r) -> loop (acc + v) (l :: r :: xs)
   in
-  loop 0 t
+  loop 0 [t]
 
 let tree_product (t: 'a tree): int =
-  let rec loop (acc: int): 'a tree -> int = function
-    | Lf -> acc
-    | Br(v, l, r) -> loop (loop (acc * v) l) r
+  let rec loop (acc: int): 'a tree list -> int = function
+    | [] -> acc
+    | x :: xs -> 
+      match x with
+      | Lf -> loop acc xs
+      | Br(v, l, r) -> loop (acc * v) (l :: r :: xs)
   in
-  loop 1 t
+  loop 1 [t]
 
 let tree_fold (f: int -> int -> int) (start: int) (t: 'a tree): int =
-  let rec loop (f: int -> int -> int) (acc: int): 'a tree -> int = function
-    | Lf -> acc
-    | Br(v, l, r) -> loop f (loop f (f acc v) l) r
+  let rec loop (f: int -> int -> int) (acc: int): 'a tree list -> int = function
+    | [] -> acc
+    | x :: xs -> 
+      match x with
+      | Lf -> loop f acc xs
+      | Br(v, l, r) -> loop f (f acc v) (l :: r :: xs)
   in
-  loop f start t
+  loop f start [t]
 
 let () =
   Printf.printf "Tree sum: %d\n" (tree_sum (ftree 1 4));
