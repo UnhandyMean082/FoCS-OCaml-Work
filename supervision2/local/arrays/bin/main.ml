@@ -30,6 +30,12 @@ let rec append (value: 'a) (arr: 'a array): 'a array =
   | Empty -> node Empty value Empty
   | Node (l, v, r, _) -> node l v (append value r)
 
+let rec tail (arr: 'a array): 'a array =
+  match arr with
+  | Empty -> failwith "Empty array has no tail"
+  | Node (Empty, _, r, _) -> r
+  | Node (l, v, r, _) -> node (tail l) v r
+
 exception Collision
 let ins (k: string) (v: 'a) (tree: 'a tree): 'a tree =
   let rec loop (k: string) (v: 'a): 'a tree -> 'a tree = function
