@@ -6,12 +6,34 @@ type 'a utree =
   | Lf
   | Br of 'a * 'a utree
 
-type arithmetic =
+type expr =
   | Const of float
   | Var of string
-  | Neg of arithmetic
-  | Add of arithmetic * arithmetic
-  | Mul of arithmetic * arithmetic
+  | Neg of expr
+  | Add of expr * expr
+  | Mul of expr * expr
+
+let rec eval: expr -> float = function
+  | Const c -> c
+  | Var x -> failwith (Printf.sprintf "Variable %s not defined" x)
+  | Neg x -> -. (eval x)
+  | Add (x, y) -> eval x +. eval y
+  | Mul (x, y) -> eval x *. eval y
 
 let () =
-  Printf.printf "Hello, world!\n"
+  let _ = Cons (1, Cons (2, Nil)) in
+  let _ = Br (1, Lf) in
+  Printf.printf "Evaluation of negation: %.1f\n"
+    (eval (Neg (Const 5.0)));
+  Printf.printf "Evaluation of multiplication: %.1f\n"
+    (eval (Mul (Const 6.0, Const 7.0)));
+  Printf.printf "Evaluation of addition: %.1f\n"
+    (eval (Add (Const 1.5, Const 2.5)));
+  Printf.printf "Evaluation of complex expression: %.1f\n"
+    (eval (Add (Mul (Const 2.0, Const 3.0), Neg (Const 4.0))));
+  Printf.printf "Error case (undefined variable):\n";
+  (try
+     let _ = eval (Add (Var "x", Const 2.0)) in
+     ()
+   with Failure msg ->
+     Printf.printf "%s\n" msg)
