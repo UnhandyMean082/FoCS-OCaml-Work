@@ -13,6 +13,10 @@ type expr =
   | Add of expr * expr
   | Mul of expr * expr
 
+type 'a option =
+  | None
+  | Some of 'a
+
 let rec eval: expr -> float = function
   | Const c -> c
   | Var x -> failwith (Printf.sprintf "Variable %s not defined" x)
@@ -21,8 +25,12 @@ let rec eval: expr -> float = function
   | Mul (x, y) -> eval x *. eval y
 
 let () =
-  let _ = Cons (1, Cons (2, Nil)) in
-  let _ = Br (1, Lf) in
+  let _: 'a list = Cons (1, Cons (2, Nil)) in
+  let _: 'a utree = Br (1, Lf) in
+  let _: 'a option = None in
+  let _: 'a option = Some 42 in
+  Printf.printf "Evaluation of constant: %.1f\n"
+    (eval (Const 3.5));
   Printf.printf "Evaluation of negation: %.1f\n"
     (eval (Neg (Const 5.0)));
   Printf.printf "Evaluation of multiplication: %.1f\n"
