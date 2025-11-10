@@ -2,6 +2,29 @@ type 'a tree =
   | Lf
   | Br of (string * 'a) * 'a tree * 'a tree
 
+type 'a array =
+  | Empty
+  | Node of 'a array * 'a * 'a array * int
+
+let size: 'a array -> int = function
+  | Empty -> 0
+  | Node (_, _, _, n) -> n
+
+let node (l: 'a array) (v: 'a) (r: 'a array): 'a array =
+  Node (l, v, r, 1 + size l + size r)
+
+let rec get (i: int) (arr: 'a array): 'a =
+  match arr with
+  | Empty -> failwith "Index out of bounds"
+  | Node (l, v, r, _) ->
+    let left_size = size l in
+    if i < left_size then
+      get i l
+    else if i = left_size then
+      v
+    else
+      get (i - left_size - 1) r
+
 exception Collision
 let ins (k: string) (v: 'a) (tree: 'a tree): 'a tree =
   let rec loop (k: string) (v: 'a): 'a tree -> 'a tree = function
