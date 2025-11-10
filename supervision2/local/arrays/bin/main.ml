@@ -92,4 +92,18 @@ let () =
   print_tree t4;
   let t5 = del "b" t4 in
   Printf.printf "\nThe list after deleting 'b':\n";
-  print_tree t5
+  print_tree t5;
+  Printf.printf "\n";
+  let arr = Empty in
+  let arr = append 1 arr in
+  let arr = append 2 arr in
+  let arr = append 3 arr in
+  Printf.printf "Array elements:\n";
+  for i = 0 to size arr - 1 do
+    Printf.printf "%d\n" (get i arr)
+  done;
+  let arr_tail = tail arr in
+  Printf.printf "\nArray elements after tail:\n";
+  for i = 0 to size arr_tail - 1 do
+    Printf.printf "%d\n" (get i arr_tail)
+  done
