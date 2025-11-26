@@ -1,4 +1,0 @@
-(executable
- (public_name trees)
- (name main)
- (libraries trees))
