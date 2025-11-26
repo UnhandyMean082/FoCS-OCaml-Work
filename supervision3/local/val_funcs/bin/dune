@@ -1,0 +1,4 @@
+(executable
+ (public_name val_funcs)
+ (name main)
+ (libraries val_funcs))
