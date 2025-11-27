@@ -27,6 +27,16 @@ let map_option (f: 'a -> 'b): 'a option -> 'b option = function
   | None -> None
   | Some x -> Some (f x)
 
+let rec change (till: int list) (amt: int): int list list =
+  match till, amt with
+  | _, 0 -> [[]]
+  | [], _ -> []
+  | c :: till, amt ->
+    if amt < c then
+      change till amt
+    else
+      List.map (fun a -> c :: a) (change (c :: till) (amt - c)) @ change till amt
+
 let () =
   Printf.printf "\nPairwise Less Than Lower Order (\"a\", 1) (\"b\", 2): %b\n" (pairwiseLtLO ("a", 1) ("b", 2));
   Printf.printf "Pairwise Less Than Lower Order (\"a\", 2) (\"b\", 1): %b\n\n" (pairwiseLtLO ("a", 2) ("b", 1));
@@ -56,4 +66,13 @@ let () =
   if mapped_opt2 <> None then
     Printf.printf "Mapped Option 2: Some %d\n" (match mapped_opt2 with Some v -> v | None -> 0)
   else
-    Printf.printf "Mapped Option 2: None\n"
+    Printf.printf "Mapped Option 2: None\n";
+  let coins = [1; 5; 10; 25] in
+  let amount = 7 in
+  let ways = change coins amount in
+  Printf.printf "\nWays to make change for %d using coins %s:\n" amount (String.concat "; " (List.map string_of_int coins));
+  List.iter (fun way ->
+    Printf.printf "[";
+    List.iter (fun coin -> Printf.printf "%d; " coin) way;
+    Printf.printf "]\n"
+  ) ways
