@@ -10,10 +10,16 @@ let pairwiseLtHO (x, y: 'a * 'b) (x', y': 'a * 'b) (lt: 'a -> 'a -> bool): bool 
 let lexicographicLtHO (x, y: 'a * 'b) (x', y': 'a * 'b) (eq: 'a -> 'a -> bool) (lt: 'a -> 'a -> bool): bool =
   (lt x x') || (eq x x' && lt y y')
 
-let rec map2 (f: 'a -> 'b) (lst: 'a list list): 'b list list =
+let rec map2_inner (f: 'a -> 'b) (lst: 'a list list) (acc: 'b list): 'b list list =
   match lst with
   | [] -> []
-  | x :: xs -> (List.map f x) :: (map2 f xs)
+  | x :: xs ->
+      match x with
+      | [] -> List.rev acc :: map2_inner f xs []
+      | y :: ys -> map2_inner f (ys :: xs) ((f y) :: acc)
+
+let map2 (f: 'a -> 'b) (lst: 'a list list): 'b list list =
+  map2_inner f lst []
 
 let () =
   Printf.printf "\nPairwise Less Than Lower Order (\"a\", 1) (\"b\", 2): %b\n" (pairwiseLtLO ("a", 1) ("b", 2));
@@ -24,3 +30,11 @@ let () =
   Printf.printf "Pairwise Less Than Higher Order (3, 6) (5, 4) (<): %b\n\n" (pairwiseLtHO (3, 6) (5, 4) (<));
   Printf.printf "Lexicographic Less Than Higher Order (3, 4) (3, 5) (=) (<): %b\n" (lexicographicLtHO (3, 4) (3, 5) (=) (<));
   Printf.printf "Lexicographic Less Than Higher Order (4, 3) (3, 5) (=) (<): %b\n\n" (lexicographicLtHO (4, 3) (3, 5) (=) (<));
+  let lst = [[1; 2; 3]; [4; 5]; [6]] in
+  let mapped_lst = map2 (fun x -> x * 2) lst in
+  Printf.printf "Mapped List:\n";
+  List.iter (fun sublist ->
+    Printf.printf "[";
+    List.iter (fun item -> Printf.printf "%d; " item) sublist;
+    Printf.printf "]\n"
+  ) mapped_lst
