@@ -47,11 +47,13 @@ let () =
   Printf.printf "\n";
   let opt1 = Some 10 in
   let mapped_opt1 = map_option (fun x -> x + 5) opt1 in
-  match mapped_opt1 with
-  | Some v -> Printf.printf "\nMapped Option 1: Some %d\n" v
-  | None -> Printf.printf "\nMapped Option 1: None\n";
+  if mapped_opt1 <> None then
+    Printf.printf "\nMapped Option 1: Some %d\n" (match mapped_opt1 with Some v -> v | None -> 0)
+  else
+    Printf.printf "\nMapped Option 1: None\n";
   let opt2 = None in
   let mapped_opt2 = map_option (fun x -> x + 5) opt2 in
-  match mapped_opt2 with
-  | Some v -> Printf.printf "Mapped Option 2: Some %d\n" v
-  | None -> Printf.printf "Mapped Option 2: None\n";
+  if mapped_opt2 <> None then
+    Printf.printf "Mapped Option 2: Some %d\n" (match mapped_opt2 with Some v -> v | None -> 0)
+  else
+    Printf.printf "Mapped Option 2: None\n"
