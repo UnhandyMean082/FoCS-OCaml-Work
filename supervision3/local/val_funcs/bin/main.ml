@@ -23,7 +23,7 @@ let map2 (f: 'a -> 'b) (lst: 'a list list): 'b list list =
 
 type 'a option = None | Some of 'a
 
-let rec map_option (f: 'a -> 'b): 'a option -> 'b option = function
+let map_option (f: 'a -> 'b): 'a option -> 'b option = function
   | None -> None
   | Some x -> Some (f x)
 
@@ -38,19 +38,20 @@ let () =
   Printf.printf "Lexicographic Less Than Higher Order (4, 3) (3, 5) (=) (<): %b\n\n" (lexicographicLtHO (4, 3) (3, 5) (=) (<));
   let lst = [[1; 2; 3]; [4; 5]; [6]] in
   let mapped_lst = map2 (fun x -> x * 2) lst in
-  Printf.printf "Mapped List:\n";
+  Printf.printf "Mapped List:\n[";
   List.iter (fun sublist ->
     Printf.printf "[";
     List.iter (fun item -> Printf.printf "%d; " item) sublist;
-    Printf.printf "]\n"
+    Printf.printf "]; "
   ) mapped_lst;
+  Printf.printf "\n";
   let opt1 = Some 10 in
-  let opt2 = None in
   let mapped_opt1 = map_option (fun x -> x + 5) opt1 in
-  let mapped_opt2 = map_option (fun x -> x + 5) opt2 in
   match mapped_opt1 with
   | Some v -> Printf.printf "\nMapped Option 1: Some %d\n" v
   | None -> Printf.printf "\nMapped Option 1: None\n";
+  let opt2 = None in
+  let mapped_opt2 = map_option (fun x -> x + 5) opt2 in
   match mapped_opt2 with
   | Some v -> Printf.printf "Mapped Option 2: Some %d\n" v
   | None -> Printf.printf "Mapped Option 2: None\n";
