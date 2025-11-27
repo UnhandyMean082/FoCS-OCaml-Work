@@ -1,30 +1,21 @@
-let bubble (lst: int list): int list =
-  let rec pass (lst: int list) (swap: bool) (newlist: int list) (acc: int list): int list =
-    match lst with
-    | [] -> []
-    | [x] -> if swap then pass (List.rev newlist) false [] (x :: acc) else (List.rev (x :: newlist)) @ acc
-    | x :: y :: xs ->
-        if x > y then
-          pass (x :: xs) true (y :: newlist) acc
-        else
-          pass (y :: xs) swap (x :: newlist) acc
-  in
-  pass lst false [] []
+let pairwiseLtLO (x, y: string * int) (x', y': string * int): bool =
+  (x < x') && (y < y')
 
-let selection (lst: int list): int list =
-  let rec min (lst: int list) (c: int) (run: int list) (acc: int list): int * int list =
-    match lst with
-    | [] -> (c, (List.tl (List.rev run)) @ acc)
-    | x :: xs -> if x < c then min xs x [x] (run @ acc) else min xs c (x :: run) acc
-  in
-  let rec loop (lst: int list) (acc: int list): int list =
-    match lst with
-    | [] -> List.rev acc
-    | _ ->
-        let (m, rest): int * int list = min lst max_int [] [] in
-        loop rest (m :: acc)
-  in
-  loop lst []
+let lexicographicLtLO (x, y: string * int) (x', y': string * int): bool =
+  (x < x') || (x = x' && y < y')
+
+let pairwiseLtHO (x, y: 'a * 'b) (x', y': 'a * 'b) (lt: 'a -> 'a -> bool): bool =
+  (lt x x') && (lt y y')
+
+let lexicographicLtHO (x, y: 'a * 'b) (x', y': 'a * 'b) (eq: 'a -> 'a -> bool) (lt: 'a -> 'a -> bool): bool =
+  (lt x x') || (eq x x' && lt y y')
 
 let () =
-  Printf.printf "Bubble sorting []:\n";
+  Printf.printf "\nPairwise Less Than Lower Order (\"a\", 1) (\"b\", 2): %b\n" (pairwiseLtLO ("a", 1) ("b", 2));
+  Printf.printf "Pairwise Less Than Lower Order (\"a\", 2) (\"b\", 1): %b\n\n" (pairwiseLtLO ("a", 2) ("b", 1));
+  Printf.printf "Lexicographic Less Than Lower Order (\"a\", 1) (\"a\", 2): %b\n" (lexicographicLtLO ("a", 1) ("a", 2));
+  Printf.printf "Lexicographic Less Than Lower Order (\"a\", 2) (\"b\", 1): %b\n\n" (lexicographicLtLO ("a", 2) ("b", 1));
+  Printf.printf "Pairwise Less Than Higher Order (3, 4) (5, 6) (<): %b\n" (pairwiseLtHO (3, 4) (5, 6) (<));
+  Printf.printf "Pairwise Less Than Higher Order (3, 6) (5, 4) (<): %b\n\n" (pairwiseLtHO (3, 6) (5, 4) (<));
+  Printf.printf "Lexicographic Less Than Higher Order (3, 4) (3, 5) (=) (<): %b\n" (lexicographicLtHO (3, 4) (3, 5) (=) (<));
+  Printf.printf "Lexicographic Less Than Higher Order (4, 3) (3, 5) (=) (<): %b\n\n" (lexicographicLtHO (4, 3) (3, 5) (=) (<));
