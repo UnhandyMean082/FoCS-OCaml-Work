@@ -21,6 +21,12 @@ let rec map2_inner (f: 'a -> 'b) (lst: 'a list list) (acc: 'b list): 'b list lis
 let map2 (f: 'a -> 'b) (lst: 'a list list): 'b list list =
   map2_inner f lst []
 
+type 'a option = None | Some of 'a
+
+let rec map_option (f: 'a -> 'b): 'a option -> 'b option = function
+  | None -> None
+  | Some x -> Some (f x)
+
 let () =
   Printf.printf "\nPairwise Less Than Lower Order (\"a\", 1) (\"b\", 2): %b\n" (pairwiseLtLO ("a", 1) ("b", 2));
   Printf.printf "Pairwise Less Than Lower Order (\"a\", 2) (\"b\", 1): %b\n\n" (pairwiseLtLO ("a", 2) ("b", 1));
@@ -37,4 +43,14 @@ let () =
     Printf.printf "[";
     List.iter (fun item -> Printf.printf "%d; " item) sublist;
     Printf.printf "]\n"
-  ) mapped_lst
+  ) mapped_lst;
+  let opt1 = Some 10 in
+  let opt2 = None in
+  let mapped_opt1 = map_option (fun x -> x + 5) opt1 in
+  let mapped_opt2 = map_option (fun x -> x + 5) opt2 in
+  match mapped_opt1 with
+  | Some v -> Printf.printf "\nMapped Option 1: Some %d\n" v
+  | None -> Printf.printf "\nMapped Option 1: None\n";
+  match mapped_opt2 with
+  | Some v -> Printf.printf "Mapped Option 2: Some %d\n" v
+  | None -> Printf.printf "Mapped Option 2: None\n";
