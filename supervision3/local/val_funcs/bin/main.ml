@@ -10,6 +10,11 @@ let pairwiseLtHO (x, y: 'a * 'b) (x', y': 'a * 'b) (lt: 'a -> 'a -> bool): bool 
 let lexicographicLtHO (x, y: 'a * 'b) (x', y': 'a * 'b) (eq: 'a -> 'a -> bool) (lt: 'a -> 'a -> bool): bool =
   (lt x x') || (eq x x' && lt y y')
 
+let rec map2 (f: 'a -> 'b) (lst: 'a list list): 'b list list =
+  match lst with
+  | [] -> []
+  | x :: xs -> (List.map f x) :: (map2 f xs)
+
 let () =
   Printf.printf "\nPairwise Less Than Lower Order (\"a\", 1) (\"b\", 2): %b\n" (pairwiseLtLO ("a", 1) ("b", 2));
   Printf.printf "Pairwise Less Than Lower Order (\"a\", 2) (\"b\", 1): %b\n\n" (pairwiseLtLO ("a", 2) ("b", 1));
